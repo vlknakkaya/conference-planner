@@ -40,7 +40,7 @@ public class ConferenceDay {
     public boolean addNetworking() {
         int duration = Integer.min(secondSession.getRemainDuration(), Constants.MAX_NETWORKING_DURATION);
 
-        return secondSession.addConference(new Conference("Networking Event", duration, false));
+        return secondSession.addConference(new Conference(Constants.NETWORKING_NAME, duration));
     }
 
     @Override

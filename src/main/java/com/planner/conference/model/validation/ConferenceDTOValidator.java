@@ -36,7 +36,7 @@ public class ConferenceDTOValidator implements Validator {
                     "only one of duration or lightning values must be given");
         }
 
-        if (conferenceDTO.getDuration() != null && conferenceDTO.getDuration().intValue() <=0) {
+        if (conferenceDTO.getDuration() != null && conferenceDTO.getDuration().intValue() <= 0) {
             errors.rejectValue("duration",
                     String.valueOf(ErrorCodes.VALIDATION_DURATION_LOWER_THAN_ZERO),
                     "duration must be greater than 0");

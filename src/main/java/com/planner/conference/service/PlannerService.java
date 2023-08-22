@@ -23,6 +23,42 @@ public class PlannerService {
         this.conferenceService = conferenceService;
     }
 
+    public String planAsString() {
+        ConferencePlan conferencePlan = makePlan();
+
+        StringBuilder stringBuilder = new StringBuilder("- CONFERENCE PLAN -");
+        stringBuilder.append(Constants.NEW_LINE);
+
+        for (ConferenceDay conferenceDay : conferencePlan.getConferenceDays()) {
+            stringBuilder.append("- DAY-" + conferenceDay.getDay());
+            stringBuilder.append(Constants.NEW_LINE);
+
+            int time = Constants.START_DURATION;
+
+            Session session = conferenceDay.getFirstSession();
+            for (Conference conference : session.getConferenceList()) {
+                stringBuilder.append(minToTime(time) + " " + conference.getName() + " [" + conference.getDuration() + "min]");
+                stringBuilder.append(Constants.NEW_LINE);
+                time += conference.getDuration();
+            }
+
+            stringBuilder.append("12:00PM Lunch");
+            stringBuilder.append(Constants.NEW_LINE);
+            time += 60;
+
+            session = conferenceDay.getSecondSession();
+            for (Conference conference : session.getConferenceList()) {
+                stringBuilder.append(minToTime(time) + " " + conference.getName() + " [" + conference.getDuration() + "min]");
+                stringBuilder.append(Constants.NEW_LINE);
+                time += conference.getDuration();
+            }
+
+            stringBuilder.append(Constants.NEW_LINE);
+        }
+
+        return stringBuilder.toString();
+    }
+
     public ConferencePlan makePlan() {
         List<Conference> conferenceList = conferenceService.findAll();
         int totalDuration = conferenceList.stream().mapToInt(Conference::getDuration).sum();
@@ -102,6 +138,14 @@ public class PlannerService {
         for (ConferenceDay conferenceDay : conferencePlan.getConferenceDays()) {
             conferenceDay.addNetworking();
         }
+    }
+
+    private String minToTime(int startTime) {
+        int hour = (startTime / 60) % 12;
+        int minute = startTime % 60;
+        String meridiem = startTime / 60 < 12 ? "AM" : "PM";
+
+        return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) + meridiem;
     }
 
 }

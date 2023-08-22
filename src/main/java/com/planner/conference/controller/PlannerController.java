@@ -35,4 +35,9 @@ public class PlannerController {
         return conferencePlan.getConferenceDay(day);
     }
 
+    @GetMapping("/print")
+    public String printPlan() {
+        return plannerService.planAsString();
+    }
+
 }

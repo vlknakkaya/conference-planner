@@ -13,7 +13,6 @@ public class Conference implements Comparable<Conference> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
     private int duration;
     private boolean lightning;
@@ -27,12 +26,12 @@ public class Conference implements Comparable<Conference> {
         this.lightning = lightning;
     }
 
-    public Conference(String name, boolean lightning) {
-        this(name, Constants.LIGHTNING_DURATION, lightning);
-    }
-
     public Conference(String name, int duration) {
         this(name, duration, false);
+    }
+
+    public Conference(String name, boolean lightning) {
+        this(name, Constants.LIGHTNING_DURATION, lightning);
     }
 
     public long getId() {

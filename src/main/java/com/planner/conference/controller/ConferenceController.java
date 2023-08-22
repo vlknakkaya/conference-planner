@@ -4,6 +4,7 @@ import com.planner.conference.model.converter.ConferenceConverter;
 import com.planner.conference.model.dto.ConferenceDTO;
 import com.planner.conference.model.entity.Conference;
 import com.planner.conference.service.ConferenceService;
+import com.planner.conference.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,11 @@ public class ConferenceController {
             conference.setDuration(conferenceDTO.getDuration());
         }
 
+        if (conferenceDTO.isLightning()) {
+            conference.setLightning(true);
+            conference.setDuration(Constants.LIGHTNING_DURATION);
+        }
+
         conference = conferenceService.save(conference);
 
         return ResponseEntity.ok("Conference was updated: " + conference.getId());
@@ -73,7 +79,7 @@ public class ConferenceController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> removeAllConference() {
+    public ResponseEntity<String> removeAllConferences() {
         conferenceService.removeAll();
 
         return ResponseEntity.ok("All conferences were removed.");

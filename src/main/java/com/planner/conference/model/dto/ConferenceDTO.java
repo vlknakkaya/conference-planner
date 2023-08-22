@@ -26,12 +26,12 @@ public class ConferenceDTO {
         this.lightning = lightning;
     }
 
-    public ConferenceDTO(String name, boolean lightning) {
-        this(name, Constants.LIGHTNING_DURATION, lightning);
-    }
-
     public ConferenceDTO(String name, int duration) {
         this(name, duration, false);
+    }
+
+    public ConferenceDTO(String name, boolean lightning) {
+        this(name, Constants.LIGHTNING_DURATION, lightning);
     }
 
     public long getId() {

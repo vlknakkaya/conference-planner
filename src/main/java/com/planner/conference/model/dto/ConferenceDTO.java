@@ -4,41 +4,41 @@ import com.planner.conference.util.Constants;
 
 public class ConferenceDTO {
 
-    private long id;
+    private Long id;
     private String name;
-    private int duration;
+    private Integer duration;
 
-    private boolean lightning;
+    private Boolean lightning;
 
     public ConferenceDTO() {
     }
 
-    public ConferenceDTO(long id, String name, int duration, boolean lightning) {
+    public ConferenceDTO(Long id, String name, Integer duration, Boolean lightning) {
         this.id = id;
         this.name = name;
         this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 
-    public ConferenceDTO(String name, int duration, boolean lightning) {
+    public ConferenceDTO(String name, Integer duration, Boolean lightning) {
         this.name = name;
         this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 
-    public ConferenceDTO(String name, int duration) {
-        this(name, duration, false);
-    }
-
-    public ConferenceDTO(String name, boolean lightning) {
+    public ConferenceDTO(String name, Boolean lightning) {
         this(name, Constants.LIGHTNING_DURATION, lightning);
     }
 
-    public long getId() {
+    public ConferenceDTO(String name, Integer duration) {
+        this(name, duration, false);
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,19 +50,19 @@ public class ConferenceDTO {
         this.name = name;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
-    public boolean isLightning() {
+    public Boolean getLightning() {
         return lightning;
     }
 
-    public void setLightning(boolean lightning) {
+    public void setLightning(Boolean lightning) {
         this.lightning = lightning;
     }
 

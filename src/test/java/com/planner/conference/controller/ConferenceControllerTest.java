@@ -111,7 +111,7 @@ public class ConferenceControllerTest {
     public void removeConference() {
         ResponseEntity<String> response = conferenceController.removeConference(anyLong());
 
-        verify(conferenceService).remove(anyLong());
+        verify(conferenceService).remove(any());
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }

@@ -6,39 +6,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Conference implements Comparable<Conference> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+    @NotNull
     private String name;
-    private int duration;
-    private boolean lightning;
+    @NotNull
+    private Integer duration;
+    private Boolean lightning;
 
     public Conference() {
     }
 
-    public Conference(String name, int duration, boolean lightning) {
+    public Conference(String name, Integer duration, Boolean lightning) {
         this.name = name;
         this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 
-    public Conference(String name, int duration) {
+    public Conference(String name, Integer duration) {
         this(name, duration, false);
     }
 
-    public Conference(String name, boolean lightning) {
+    public Conference(String name, Boolean lightning) {
         this(name, Constants.LIGHTNING_DURATION, lightning);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,19 +53,19 @@ public class Conference implements Comparable<Conference> {
         this.name = name;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
-    public boolean isLightning() {
+    public Boolean getLightning() {
         return lightning;
     }
 
-    public void setLightning(boolean lightning) {
+    public void setLightning(Boolean lightning) {
         this.lightning = lightning;
     }
 

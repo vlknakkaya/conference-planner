@@ -1,6 +1,7 @@
 package com.planner.conference.service;
 
 import com.planner.conference.exception.EntityNotFoundException;
+import com.planner.conference.model.dto.ConferenceDTO;
 import com.planner.conference.model.entity.Conference;
 import com.planner.conference.repository.ConferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class ConferenceService {
         return conferenceRepository.saveAll(conferenceList);
     }
 
-    public void remove(long id) {
-        conferenceRepository.deleteById(id);
+    public void remove(Conference conference) {
+        conferenceRepository.delete(conference);
     }
 
     public void removeAll() {

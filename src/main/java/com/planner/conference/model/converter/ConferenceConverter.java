@@ -9,12 +9,12 @@ public class ConferenceConverter implements DTOConverter<Conference, ConferenceD
 
     @Override
     public Conference convertToEntity(ConferenceDTO dto) {
-        return dto != null ? new Conference(dto.getName(), dto.getDuration(), dto.isLightning()) : null;
+        return dto != null ? new Conference(dto.getName(), dto.getDuration(), dto.getLightning()) : null;
     }
 
     @Override
     public ConferenceDTO convertToDTO(Conference entity) {
-        return entity != null ? new ConferenceDTO(entity.getId(), entity.getName(), entity.getDuration(), entity.isLightning()) : null;
+        return entity != null ? new ConferenceDTO(entity.getId(), entity.getName(), entity.getDuration(), entity.getLightning()) : null;
     }
 
 }

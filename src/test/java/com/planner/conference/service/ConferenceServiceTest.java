@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -70,9 +71,9 @@ public class ConferenceServiceTest {
 
     @Test
     public void remove() {
-        conferenceService.remove(1L);
+        conferenceService.remove(any());
 
-        verify(conferenceRepository).deleteById(1L);
+        verify(conferenceRepository).delete(any());
     }
 
     @Test

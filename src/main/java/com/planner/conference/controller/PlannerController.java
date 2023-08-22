@@ -1,5 +1,6 @@
 package com.planner.conference.controller;
 
+import com.planner.conference.exception.DayNumberExceededException;
 import com.planner.conference.model.dto.ConferenceDay;
 import com.planner.conference.model.dto.ConferencePlan;
 import com.planner.conference.service.PlannerService;
@@ -29,7 +30,7 @@ public class PlannerController {
     public ConferenceDay getDay(@PathVariable int day) {
         ConferencePlan conferencePlan = plannerService.makePlan();
         if (conferencePlan.getTotalDays() < day) {
-            return null;
+            throw new DayNumberExceededException(conferencePlan.getTotalDays(), day);
         }
 
         return conferencePlan.getConferenceDay(day);

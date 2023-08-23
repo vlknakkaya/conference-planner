@@ -4,6 +4,7 @@ public final class ErrorCodes {
 
     public static final int ENTITY_NOT_FOUND = 101;
     public static final int DAY_NUMBER_EXCEEDED = 102;
+    public static final int DATA_INTEGRITY_ERROR = 103;
     public static final int VALIDATION_ERROR = 400;
     public static final int VALIDATION_EMPTY_NAME = 401;
     public static final int VALIDATION_BOTH_DURATION_AND_LIGHTNING = 402;

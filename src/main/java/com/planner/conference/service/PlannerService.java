@@ -48,6 +48,10 @@ public class PlannerService {
 
             session = conferenceDay.getSecondSession();
             for (Conference conference : session.getConferenceList()) {
+                if (Constants.NETWORKING_NAME.equals(conference.getName()) && conference.getDuration() == 60) {
+                    stringBuilder.append("04:00PM " + Constants.NETWORKING_NAME + " [60min]");
+                    continue;
+                }
                 stringBuilder.append(minToTime(time) + " " + conference.getName() + " [" + conference.getDuration() + "min]");
                 stringBuilder.append(Constants.NEW_LINE);
                 time += conference.getDuration();

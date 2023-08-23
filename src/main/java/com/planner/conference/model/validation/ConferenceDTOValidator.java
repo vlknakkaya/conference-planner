@@ -47,6 +47,6 @@ public class ConferenceDTOValidator implements Validator {
                     String.valueOf(ErrorCodes.VALIDATION_LIGHTNING_MUST_BE_TRUE),
                     "lightning must be true if given");
         }
-
     }
+    
 }

@@ -8,6 +8,7 @@ import com.planner.conference.service.ConferenceService;
 import com.planner.conference.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Validated
 @RestController
 @RequestMapping("/conference")
 public class ConferenceController {
@@ -23,8 +25,8 @@ public class ConferenceController {
     private final ConferenceConverter conferenceConverter;
     private final ConferenceDTOValidator conferenceDTOValidator;
 
-    @InitBinder
-    protected void initBinder(final WebDataBinder binder){
+    @InitBinder(value = "conferenceDTO")
+    protected void initConferenceDTOValidator(final WebDataBinder binder){
         binder.addValidators(conferenceDTOValidator);
     }
 
@@ -53,7 +55,7 @@ public class ConferenceController {
     }
 
     @PostMapping("/bulk")
-    public ResponseEntity<String> createConferences(@RequestBody @Valid List<ConferenceDTO> conferenceDTOList) {
+    public ResponseEntity<String> createConferences(@RequestBody List<@Valid ConferenceDTO> conferenceDTOList) {
         List<Conference> conferences = conferenceService.saveAll(conferenceConverter.convertToEntityList(conferenceDTOList));
 
         return ResponseEntity.ok("Conferences were created: " + conferences.stream().map(Conference::getId).collect(Collectors.toList()));

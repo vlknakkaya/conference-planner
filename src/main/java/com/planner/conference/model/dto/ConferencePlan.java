@@ -30,6 +30,10 @@ public class ConferencePlan {
     }
 
     private int calculateNeededDays(int totalDuration) {
+        if (totalDuration == 0) {
+            return 0;
+        }
+
         int dayTotalDuration = Constants.SESSION_ONE_DURATION + Constants.SESSION_TWO_DURATION;
 
         return (totalDuration / dayTotalDuration) + 1;

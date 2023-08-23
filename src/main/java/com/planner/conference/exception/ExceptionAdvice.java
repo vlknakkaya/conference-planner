@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.validation.ObjectError;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,18 @@ public class ExceptionAdvice {
         errorResponse.setDate(new Date());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ErrorResponse> handleSQLIntegrityConstraintViolationException(
+            SQLIntegrityConstraintViolationException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorCode(ErrorCodes.DATA_INTEGRITY_ERROR);
+        errorResponse.setErrorMessage(ex.getMessage());
+        errorResponse.setDate(new Date());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

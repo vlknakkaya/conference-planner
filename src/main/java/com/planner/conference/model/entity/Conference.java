@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
 
 @Entity
 public class Conference implements Comparable<Conference> {
@@ -14,9 +14,9 @@ public class Conference implements Comparable<Conference> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String name;
-    @NotNull
+    @Column(nullable = false)
     private Integer duration;
     private Boolean lightning;
 
@@ -25,7 +25,7 @@ public class Conference implements Comparable<Conference> {
 
     public Conference(String name, Integer duration, Boolean lightning) {
         this.name = name;
-        this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
+        this.duration = lightning != null && lightning.booleanValue() ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 

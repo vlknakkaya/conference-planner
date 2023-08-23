@@ -16,13 +16,13 @@ public class ConferenceDTO {
     public ConferenceDTO(Long id, String name, Integer duration, Boolean lightning) {
         this.id = id;
         this.name = name;
-        this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
+        this.duration = lightning != null && lightning.booleanValue() ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 
     public ConferenceDTO(String name, Integer duration, Boolean lightning) {
         this.name = name;
-        this.duration = lightning ? Constants.LIGHTNING_DURATION : duration;
+        this.duration = lightning != null && lightning.booleanValue() ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 

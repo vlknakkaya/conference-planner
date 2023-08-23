@@ -54,4 +54,4 @@ Bu işlem sonucunda ilk oturumlar boşluksuz yerleştirilmiş olur. İkinci otur
 (maksimum 60dk olmak koşuluyla) 'Networking Event' eklenerek giderilmiş olur.
 
 > Ek olarak, daha net bir yerleştirme için; sunumlar azalan sırada sıralanıp best-fit algoritmasına göre yerleştirilebilir.
-Sonrasında, oturumlar arasına ilaveten günler arası relocation işlemi de yapılabilir.
+Sonrasında, oturumlar arasına ilaveten günler arası relocation işlemi de yapılabilir. Ancak benim vaktim kısıtlı :)

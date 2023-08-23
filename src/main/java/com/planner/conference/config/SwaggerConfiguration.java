@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
 
         private ApiInfo apiInfoMetaData() {
                 return new ApiInfoBuilder().title("ConferencePlanner API Documentation")
-                        .description("Makes calendar plan for given conferences")
+                        .description("Makes conference plan for given presentations")
                         .contact(new Contact("Volkan Akkaya", "https://github.com/vlknakkaya/conference-planner", "vlkn.akkaya@gmail.com"))
                         .license("Apache 2.0")
                         .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")

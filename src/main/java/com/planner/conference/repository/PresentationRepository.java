@@ -1,9 +1,9 @@
 package com.planner.conference.repository;
 
-import com.planner.conference.model.entity.Conference;
+import com.planner.conference.model.entity.Presentation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ConferenceRepository extends JpaRepository<Conference, Long> {
+public interface PresentationRepository extends JpaRepository<Presentation, Long> {
 }

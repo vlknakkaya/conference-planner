@@ -1,23 +1,19 @@
 package com.planner.conference.service;
 
-import com.planner.conference.exception.EntityNotFoundException;
-import com.planner.conference.model.entity.Conference;
-import com.planner.conference.repository.ConferenceRepository;
+import com.planner.conference.model.dto.Conference;
+import com.planner.conference.model.entity.Presentation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class ConferenceServiceTest {
@@ -26,65 +22,42 @@ public class ConferenceServiceTest {
     private ConferenceService conferenceService;
 
     @Mock
-    private ConferenceRepository conferenceRepository;
+    private PresentationService presentationService;
 
     @Test
-    public void findById() {
-        Optional<Conference> optConference = Optional.of(dummyConference());
-        when(conferenceRepository.findById(5L)).thenReturn(optConference);
+    public void makePlan() {
+        when(presentationService.findAll()).thenReturn(dummyPresentations());
 
-        Conference conference = conferenceService.findById(5L);
+        Conference response = conferenceService.makePlan();
 
-        verify(conferenceRepository).findById(5L);
-        assertNotNull(conference);
+        assertNotNull(response);
+        assertTrue(response.getTotalDays() > 0);
     }
 
-    @Test
-    public void findById_notFound() {
-        assertThrows(EntityNotFoundException.class, () -> conferenceService.findById(-1L));
-    }
+    private List<Presentation> dummyPresentations() {
+        // conferences from case example
+        List<Presentation> presentationList = new ArrayList<>();
+        presentationList.add(new Presentation("A", 60));
+        presentationList.add(new Presentation("B", 45));
+        presentationList.add(new Presentation("C", 30));
+        presentationList.add(new Presentation("D", 45));
+        presentationList.add(new Presentation("E", 45));
+        presentationList.add(new Presentation("F", true));
+        presentationList.add(new Presentation("G", 60));
+        presentationList.add(new Presentation("H", 45));
+        presentationList.add(new Presentation("I", 30));
+        presentationList.add(new Presentation("J", 30));
+        presentationList.add(new Presentation("K", 45));
+        presentationList.add(new Presentation("L", 60));
+        presentationList.add(new Presentation("M", 60));
+        presentationList.add(new Presentation("N", 45));
+        presentationList.add(new Presentation("O", 30));
+        presentationList.add(new Presentation("P", 30));
+        presentationList.add(new Presentation("R", 60));
+        presentationList.add(new Presentation("S", 30));
+        presentationList.add(new Presentation("T", 30));
 
-    @Test
-    public void findAll() {
-        conferenceService.findAll();
-
-        verify(conferenceRepository).findAll();
-    }
-
-    @Test
-    public void save() {
-        Conference dummyConference = dummyConference();
-
-        conferenceService.save(dummyConference);
-
-        verify(conferenceRepository).save(dummyConference);
-    }
-
-    @Test
-    public void saveAll() {
-        List<Conference> conferenceList = Collections.singletonList(dummyConference());
-
-        conferenceService.saveAll(conferenceList);
-
-        verify(conferenceRepository).saveAll(conferenceList);
-    }
-
-    @Test
-    public void remove() {
-        conferenceService.remove(any());
-
-        verify(conferenceRepository).delete(any());
-    }
-
-    @Test
-    public void removeAll() {
-        conferenceService.removeAll();
-
-        verify(conferenceRepository).deleteAll();
-    }
-
-    private Conference dummyConference() {
-        return new Conference("dummy", 15);
+        return presentationList;
     }
 
 }

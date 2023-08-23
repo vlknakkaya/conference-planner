@@ -5,11 +5,11 @@ import com.planner.conference.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConferencePlan {
+public class Conference {
 
     private final List<ConferenceDay> conferenceDays = new ArrayList<>();
 
-    public ConferencePlan(int totalDuration) {
+    public Conference(int totalDuration) {
         int days = calculateNeededDays(totalDuration);
 
         for (int i = 0; i < days; i++) {
@@ -41,7 +41,7 @@ public class ConferencePlan {
 
     @Override
     public String toString() {
-        return "ConferencePlan{" +
+        return "Conference{" +
                 "conferenceDays=" + conferenceDays +
                 '}';
     }

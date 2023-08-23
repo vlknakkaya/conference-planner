@@ -1,13 +1,13 @@
 package com.planner.conference.model.dto;
 
-import com.planner.conference.model.entity.Conference;
+import com.planner.conference.model.entity.Presentation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Session {
 
-    private final List<Conference> conferenceList = new ArrayList<>();
+    private final List<Presentation> presentationList = new ArrayList<>();
     private final int totalDuration;
     private int remainDuration;
 
@@ -16,8 +16,8 @@ public class Session {
         this.remainDuration = totalDuration;
     }
 
-    public List<Conference> getConferenceList() {
-        return conferenceList;
+    public List<Presentation> getPresentationList() {
+        return presentationList;
     }
 
     public int getTotalDuration() {
@@ -28,24 +28,24 @@ public class Session {
         return remainDuration;
     }
 
-    public boolean addConference(Conference conference) {
-        if (remainDuration < conference.getDuration()) {
+    public boolean addPresentation(Presentation presentation) {
+        if (remainDuration < presentation.getDuration()) {
             return false;
         }
 
-        conferenceList.add(conference);
-        remainDuration -= conference.getDuration();
+        presentationList.add(presentation);
+        remainDuration -= presentation.getDuration();
 
         return true;
     }
 
-    public boolean removeConference(Conference conference) {
-        if (!conferenceList.contains(conference)) {
+    public boolean removePresentation(Presentation presentation) {
+        if (!presentationList.contains(presentation)) {
             return false;
         }
 
-        conferenceList.remove(conference);
-        remainDuration += conference.getDuration();
+        presentationList.remove(presentation);
+        remainDuration += presentation.getDuration();
 
         return true;
     }
@@ -53,7 +53,7 @@ public class Session {
     @Override
     public String toString() {
         return "Session{" +
-                "conferenceList=" + conferenceList +
+                "presentationList=" + presentationList +
                 ", totalDuration=" + totalDuration +
                 ", remainDuration=" + remainDuration +
                 '}';

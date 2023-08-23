@@ -1,40 +1,37 @@
-package com.planner.conference.model.entity;
+package com.planner.conference.model.dto;
 
 import com.planner.conference.util.Constants;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
+public class PresentationDTO {
 
-@Entity
-public class Conference implements Comparable<Conference> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
     private String name;
-    @Column(nullable = false)
     private Integer duration;
+
     private Boolean lightning;
 
-    public Conference() {
+    public PresentationDTO() {
     }
 
-    public Conference(String name, Integer duration, Boolean lightning) {
+    public PresentationDTO(Long id, String name, Integer duration, Boolean lightning) {
+        this.id = id;
         this.name = name;
         this.duration = lightning != null && lightning.booleanValue() ? Constants.LIGHTNING_DURATION : duration;
         this.lightning = lightning;
     }
 
-    public Conference(String name, Integer duration) {
-        this(name, duration, false);
+    public PresentationDTO(String name, Integer duration, Boolean lightning) {
+        this.name = name;
+        this.duration = lightning != null && lightning.booleanValue() ? Constants.LIGHTNING_DURATION : duration;
+        this.lightning = lightning;
     }
 
-    public Conference(String name, Boolean lightning) {
+    public PresentationDTO(String name, Boolean lightning) {
         this(name, Constants.LIGHTNING_DURATION, lightning);
+    }
+
+    public PresentationDTO(String name, Integer duration) {
+        this(name, duration, false);
     }
 
     public Long getId() {
@@ -70,13 +67,8 @@ public class Conference implements Comparable<Conference> {
     }
 
     @Override
-    public int compareTo(Conference o) {
-        return Integer.compare(this.duration, o.duration);
-    }
-
-    @Override
     public String toString() {
-        return "Conference{" +
+        return "PresentationDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", duration=" + duration +

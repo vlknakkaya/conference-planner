@@ -1,6 +1,6 @@
 package com.planner.conference.model.dto;
 
-import com.planner.conference.model.entity.Conference;
+import com.planner.conference.model.entity.Presentation;
 import com.planner.conference.util.Constants;
 
 public class ConferenceDay {
@@ -29,23 +29,23 @@ public class ConferenceDay {
         return secondSession;
     }
 
-    public boolean addConference(Conference conference, int sessionNo) {
-        return sessionNo == Constants.SESSION_ONE ? firstSession.addConference(conference) : secondSession.addConference(conference);
+    public boolean addPresentation(Presentation presentation, int sessionNo) {
+        return sessionNo == Constants.SESSION_ONE ? firstSession.addPresentation(presentation) : secondSession.addPresentation(presentation);
     }
 
-    public boolean removeConference(Conference conference, int sessionNo) {
-        return sessionNo == Constants.SESSION_ONE ? firstSession.removeConference(conference) : secondSession.removeConference(conference);
+    public boolean removePresentation(Presentation presentation, int sessionNo) {
+        return sessionNo == Constants.SESSION_ONE ? firstSession.removePresentation(presentation) : secondSession.removePresentation(presentation);
     }
 
     public boolean addNetworking() {
         int duration = Integer.min(secondSession.getRemainDuration(), Constants.MAX_NETWORKING_DURATION);
 
-        return secondSession.addConference(new Conference(Constants.NETWORKING_NAME, duration));
+        return secondSession.addPresentation(new Presentation(Constants.NETWORKING_NAME, duration));
     }
 
     @Override
     public String toString() {
-        return "ConferencePlan{" +
+        return "ConferenceDay{" +
                 "day=" + day +
                 ", firstSession=" + firstSession +
                 ", secondSession=" + secondSession +
